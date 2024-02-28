@@ -1,5 +1,3 @@
-using BackendCrud.Data;
-using BackendCrud.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options => 
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Crud"))
-);
+//builder.Services.AddDbContext<AppDbContext>(options => 
+//    options.UseNpgsql(builder.Configuration.GetConnectionString("Crud"))
+//);
 
 var app = builder.Build();
 
@@ -25,21 +23,21 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/CreatePerson" , async ([FromServices]AppDbContext context, [FromBody] Pessoa pessoa) => 
-{
-    await context.Pessoas.AddAsync(pessoa);
-    await context.SaveChangesAsync();
+//app.MapPost("/CreatePerson" , async ([FromServices]AppDbContext context, [FromBody] Pessoa pessoa) => 
+//{
+//    await context.Pessoas.AddAsync(pessoa);
+//    await context.SaveChangesAsync();
 
-    var pessoaCriada =await context.Pessoas.Where(p => p.Id.Equals(pessoa.Id)).FirstOrDefaultAsync();
+//    var pessoaCriada =await context.Pessoas.Where(p => p.Id.Equals(pessoa.Id)).FirstOrDefaultAsync();
 
-    return Results.Ok(pessoaCriada);
-});
+//    return Results.Ok(pessoaCriada);
+//});
 
-app.MapGet("/AllPersons", async ([FromServices] AppDbContext context) => 
-{
-    var person = await context.Pessoas.ToListAsync();
-    return Results.Ok(person);
-});
+//app.MapGet("/AllPersons", async ([FromServices] AppDbContext context) => 
+//{
+//    var person = await context.Pessoas.ToListAsync();
+//    return Results.Ok(person);
+//});
 
 
 app.Run();
