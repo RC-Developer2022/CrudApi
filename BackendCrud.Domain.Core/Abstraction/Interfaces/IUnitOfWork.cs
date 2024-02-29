@@ -1,8 +1,10 @@
-﻿namespace BackendCrud.Domain.Core.Abstraction.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
-public interface IUnitOfWork
+namespace BackendCrud.Domain.Core.Abstraction.Interfaces;
+
+public interface IUnitOfWork : IDisposable
 {
+    IDbContextTransaction BeginTransaction();
     Task<bool> CommitAsync();
-
     Task RollbackAsync();
 }

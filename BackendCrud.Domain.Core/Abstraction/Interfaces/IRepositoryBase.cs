@@ -1,9 +1,11 @@
-﻿namespace BackendCrud.Domain.Core.Abstraction.Interfaces;
+﻿using BackendCrud.Domain.Core.Abstraction.Abstracts;
 
-public interface IRepositoryBase<TEntity> where TEntity : class
+namespace BackendCrud.Domain.Core.Abstraction.Interfaces;
+
+public interface IRepositoryBase<TEntity> where TEntity : Entity
 {
-    Task<TEntity> AddAsync(TEntity etnity);
-    Task<TEntity> UpdateAsync(TEntity entity);
-    Task<TEntity> DeleteAsync(TEntity entity);
+    Task AddAsync(TEntity etnity);
+    Task UpdateAsync(TEntity entity);
+    Task DeleteAsync(TEntity entity);
 
 }
